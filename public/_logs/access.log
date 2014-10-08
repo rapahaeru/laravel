@@ -1,0 +1,7 @@
+127.0.0.1 - - [08/Oct/2014:16:18:56 -0300] "GET /login HTTP/1.1" 200 551 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+127.0.0.1 - - [08/Oct/2014:16:19:05 -0300] "GET / HTTP/1.1" 200 551 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+127.0.0.1 - - [08/Oct/2014:16:20:03 -0300] "GET / HTTP/1.1" 200 6388 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+127.0.0.1 - - [08/Oct/2014:16:20:07 -0300] "GET /login HTTP/1.1" 200 1445 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+127.0.0.1 - - [08/Oct/2014:16:20:07 -0300] "GET /incs/css/bootstrap.min.css HTTP/1.1" 200 18483 "http://conteudonatural.com.br/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+127.0.0.1 - - [08/Oct/2014:16:20:07 -0300] "GET /incs/js/jQuery-1.111.min.js HTTP/1.1" 200 33582 "http://conteudonatural.com.br/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+127.0.0.1 - - [08/Oct/2014:16:20:07 -0300] "GET /incs/js/bootstrap.min.js HTTP/1.1" 200 8890 "http://conteudonatural.com.br/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
