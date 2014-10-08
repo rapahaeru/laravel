@@ -31,7 +31,9 @@ If you prefer, you can alternatively download a copy of the Laravel repository f
 
 Depois de instalado você deve conferir o arquivo "app/config/app.php" para as configurações e documentações
 
-A pasta "app/storage" precisa ter permissão de escrita
+A pasta "app/storage" precisa ter permissão de escrita (recursiva)
+
+$ sudo chmod 77 -r <pasta storage>
 
 Alguns diretorios de frameworks são configuraveis, para mudar a localização dos mesmos, acesse bootstrap/paths.php
 
@@ -95,3 +97,43 @@ Caso queira voltar atras :
 $ php artisan migrate:rollback
 
 o rollback chama a funcao down() automaticamente
+===========================================================================
+
+CONFIGURACAO NO PROPRIO SERVIDOR SEM A NECESSIDADE DO ARTISAN
+
+Caso queira configurar no proprio apache instalado, será necessário :
+
+Criar um host
+Criar um virtual host
+
+Para criar um host
+
+#sudo nano /etc/hosts 
+
+e adicionar a endereço
+
+Para criar um virtual host , vá para pasta do apache2 e crie um novo arquivo com o nome da url no /sites-available
+
+$sudo nano <url>.com.br
+
+Lá configure o seguinte código (básico) :
+
+<code>
+NameVirtualHost <url>.com.br:80
+
+<VirtualHost <url>.com.br:80>
+    ServerName      <url>.com.br
+    ServerAdmin webmaster@localhost
+
+    DocumentRoot <caminho-fisico-completo>/public/
+
+    ErrorLog <caminho-fisico-completo>//public/_logs/error.log
+    LogLevel warn
+    CustomLog <caminho-fisico-completo>/public/_logs/access.log combined
+</VirtualHost>
+</code>
+
+A pasta Public é a área de acesso publico (obviamente) do laravel, portanto lá é a parte exposta.
+
+
+
