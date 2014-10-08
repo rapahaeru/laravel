@@ -17,15 +17,15 @@ Blade => http://magazine.softerize.com.br/tutoriais/php/laravel/templates-com-bl
 - Instalação via composer (http://laravel.com/docs/4.2/installation#install-composer)
 
 Primeira coisa, instalar o composer (http://getcomposer.org/)
-$ curl -sS https://getcomposer.org/installer | php
+<code>$ curl -sS https://getcomposer.org/installer | php</code>
 
 ele vai baixar um arquivo PHPAR ( PHP Archive), renomeio para apenas "composer"
 
-$ sudo mv composer.phar composer (ponha na pasta WWW ou PUBLIC_HTML para executar o comando de fora da pasta do projeto)
+<code>$ sudo mv composer.phar composer</code> (ponha na pasta WWW ou PUBLIC_HTML para executar o comando de fora da pasta do projeto)
 
 Execute em seguida o comando para baixar e instalar o laravel (através do composer)
 
-$ php composer create-project laravel/laravel <primeiro-laravel> (e aguarde baixar o framework e suas dependencias )
+<code>$ php composer create-project laravel/laravel <primeiro-laravel></code> (e aguarde baixar o framework e suas dependencias )
 
 If you prefer, you can alternatively download a copy of the Laravel repository from GitHub manually. Next run the composer install command in the root of your manually created project directory. This command will download and install the framework's dependencies.
 
@@ -33,25 +33,25 @@ Depois de instalado você deve conferir o arquivo "app/config/app.php" para as c
 
 A pasta "app/storage" precisa ter permissão de escrita (recursiva)
 
-$ sudo chmod 77 -r <pasta storage>
+<code>$ sudo chmod 77 -R <pasta storage></code>
 
 Alguns diretorios de frameworks são configuraveis, para mudar a localização dos mesmos, acesse bootstrap/paths.php
 
 O framework utiliza .htaccess, para esconder o "index.php" das URLS, se for usar no apache, conferir se o mod_rewrite está habilitado.
 Se o .htaccess nao funcionar no Laravel, tente com esse trecho de código :
-
+<code>
 Options +FollowSymLinks
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
-
+</code>
 
 Server com laravel
 
 Se for utilizar um  servidor normal com PHP, basta digitar no terminal o comando 
-$ php artisan serve
+<code>$ php artisan serve</code>
 
 O artisan é o nome da interface de linha de comandos inclusa no laravel
 
@@ -65,12 +65,12 @@ Outra área a ser observada é a app/config, lá contem todas as configuracoes d
 Migrations Permite com que voce defina todas as alteracoes no seu banco de dados e possa compartilhar com sua equipe.
 Primeiro voce define as configuracoes de acesso ao banco em : app/config/database.php
 Vamos agora criar um migration utilizando o Artisan.
-$ php artisan migrate:make <create_users_table> ( informacao da tabela e tabela para boas praticas)
+<code>$ php artisan migrate:make <create_users_table> </code>( informacao da tabela e tabela para boas praticas)
 
 Agora va ate a pasta  app/database/migrations
 La sera criado um arquivo com uma classe com 2 metodos, up() e down().
 Em up(), toda a alteracao que voce deseja ser feita em seu banco, ja em down(), tudo o que voce quer que seja revertido, ex : 
-
+<code>
 public function up()
 {
     Schema::create('users', function($table)
@@ -86,15 +86,15 @@ public function down()
 {
     Schema::drop('users');
 }
-
+</code>
 
 para finalmente rodar o migrate :
 
-$ php artisan migrate
+<code>$ php artisan migrate</code>
 
 Caso queira voltar atras :
 
-$ php artisan migrate:rollback
+<code>$ php artisan migrate:rollback</code> 
 
 o rollback chama a funcao down() automaticamente
 ===========================================================================
@@ -108,13 +108,13 @@ Criar um virtual host
 
 Para criar um host
 
-#sudo nano /etc/hosts 
+<code>$ sudo nano /etc/hosts </code>
 
 e adicionar a endereço
 
 Para criar um virtual host , vá para pasta do apache2 e crie um novo arquivo com o nome da url no /sites-available
 
-$sudo nano <url>.com.br
+<code>$ sudo nano <url>.com.br</code>
 
 Lá configure o seguinte código (básico) :
 
