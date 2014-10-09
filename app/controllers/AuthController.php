@@ -10,6 +10,41 @@ class AuthController extends BaseController {
     }
 
     public function do_login(){
+
+        $pass =  Hash::make($_POST['password']);
+
+        //echo $pass;
+        //$users = User::getAll();
+
+        $users = User::getUserByMail($_POST['email']);
+
+        if ($users){
+            foreach ($users as $user ) {
+                echo $user->usr_pass;    
+            }
+        }
+
+
+        
+
+
+        if ( hash::check($_POST['password'],$pass)){
+            //echo "checado";
+        }else{
+            //echo "erro";
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
         // $form = new LoginForm;
         // $form->fill(Input::all());
 

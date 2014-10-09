@@ -5,17 +5,18 @@
 	<div class="col-md-6 col-md-offset-3">
 		<div class="jumbotron">
 			<h1>Login</h1>
-			<form role="form" method="post">
+			<!-- {{ Form::open( array('method' => 'post', 'url' => 'login/') ) }} -->
+			{{ Form::open( array('method' => 'post', 'url' => 'login') ) }}
 				<div class="form-group">
-					<label for="username">User</label>
-					<input type="text" class="form-control" id="username" name="username">
+					<label for="email">User mail</label>
+					<input type="text" class="form-control" id="email" name="email">
 				</div>
 				<div class="form-group">
 					<label for="password">Pass</label>
 					<input type="password" class="form-control" id="password" name="password">
 				</div>
 				<button class="btn btn-default">Entra</button>
-			</form>
+			{{ Form::close() }}
 		</div>	
 	</div>
 </div>

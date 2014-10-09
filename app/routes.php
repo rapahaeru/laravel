@@ -31,9 +31,11 @@ Route::get('/', function()
 // });
 
 
-Route::get('/login', 'AuthController@login');
-Route::post('/login', 'AuthController@do_login');
+Route::get('/login', 'AuthController@login'); 
+Route::post('/login', 'AuthController@do_login'); // vindo do formulario de login
+
 Route::get('/logout', 'AuthController@logout');
+
 
 
 Route::group(["prefix" => "admin"], function(){
