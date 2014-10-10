@@ -3,7 +3,19 @@
 class AdminController extends BaseController {
 
     public function index(){
-        return View::make('admin.home');
+        //CONFERE SESSOES
+        //
+
+        if (Session::has('user')){
+            echo "entrou";
+            var_dump(Session::all());
+
+            return View::make('admin.home');
+        }else{
+            return View::make('admin.login');
+        }
+        
+
     }
 
     // public function change_language(){

@@ -40,6 +40,7 @@ Route::get('/logout', 'AuthController@logout');
 
 Route::group(["prefix" => "admin"], function(){
     Route::get("/", "AdminController@index");
+    //Route::get("/dashboard", "AdminController@index");
     //AdminRoute::named("agendas", "AgendasAdminController");
     //AdminRoute::named("destaques", "DestaquesAdminController");
     

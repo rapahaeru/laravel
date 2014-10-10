@@ -11,56 +11,37 @@ class AuthController extends BaseController {
 
     public function do_login(){
 
-        $pass =  Hash::make($_POST['password']);
-
-        //echo $pass;
-        //$users = User::getAll();
+       // $pass =  Hash::make($_POST['password']);
 
         $users = User::getUserByMail($_POST['email']);
 
         if ($users){
             foreach ($users as $user ) {
-                echo $user->usr_pass;    
+                $pass       = $user->usr_pass;
+                $id         = $user->usr_id;
+                $name       = $user->usr_name;
+                $level      = $user->usr_level;
             }
-        }
 
+           if ( Hash::check($_POST['password'],$pass)){
+                // GRAVA AS SESSOES
+                Session::put('user.id',$id);
+                Session::put('user.name',$name);
+                Session::put('user.level',$level);
 
-        
-
-
-        if ( hash::check($_POST['password'],$pass)){
-            //echo "checado";
+                return Redirect::to(url('/admin'));
+                //$retorno = 'senha validada';
+            }else{
+                $retorno = "Senha ou usuário inválido";
+            }            
         }else{
-            //echo "erro";
+
+            $retorno = "E-mail não cadastrado";
+
         }
 
-        
+        echo $retorno;
 
-
-
-
-
-
-
-
-
-
-        // $form = new LoginForm;
-        // $form->fill(Input::all());
-
-        // if($form->is_valid()){
-        //     $data = $form->data();
-        //     $login = ["username" => $data["username"], "password" => $data["password"]];
-        //     if(Auth::attempt($login)){
-        //         // Session::put('language', $data['language']);
-        //         if(Session::has('next')){
-        //             $next = Session::get('next');
-        //             Session::forget('next');
-        //             return Redirect::to($next);
-        //         }
-        //         return Redirect::to("/admin");
-        //     }
-        // }
         
         // return Redirect::back()->withErrors(["Usuário e/ou senha inválidos"]);
     }
