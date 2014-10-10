@@ -14,6 +14,7 @@ return array(
 	*/
 
 	'name' => 'Conteudo Natural',
+	
 
 	'debug' => true,
 
@@ -28,7 +29,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://conteudonatural.com.br',
 
 	/*
 	|--------------------------------------------------------------------------
