@@ -14,8 +14,12 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+		"files": [
+			"app/helpers/admin_helper.php"
+		]		
 	},
+
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",
