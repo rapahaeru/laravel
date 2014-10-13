@@ -1,14 +1,22 @@
-<!-- Single button -->
+    <!-- {{ $url_current }} -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li>
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#">Dash</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>      
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Configurações <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+          <li><a href="">usuários</a></li>
+      </ul>
+    </li>
 
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    Action <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Separated link</a></li>
   </ul>
-</div>
+
+
+

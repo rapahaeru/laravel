@@ -5,7 +5,7 @@
         <title>Admin :: {{ Config::get('app.name') }}</title>
         <link href="{{asset('incs/css/bootstrap.min.css')}}" rel="stylesheet" />
         <link href="{{asset('incs/css/style.css')}}" rel="stylesheet" />
-        <style type="text/css">body{margin-top:80px;}</style>
+        <style type="text/css">body{margin-top:130px;}</style>
     </head>
     <body>
         
@@ -22,7 +22,7 @@
                     <a class="navbar-brand active" href="{{url('admin')}}">{{ Config::get('app.name') }}</a>
                 </div>
                 
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="collapse navbar-collapse navbar-ex1-collapse menu-style">
                     @include('admin.menu')
                     <?php //var_dump(Config::get('2id_dados.data')) ?>
                 </div>
