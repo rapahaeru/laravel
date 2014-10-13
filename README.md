@@ -12,7 +12,14 @@ Blade (manipulador de templates -views do Laravel ) =>http://laravel.com/docs/4.
 Blade => http://magazine.softerize.com.br/tutoriais/php/laravel/templates-com-blade-e-bootstrap-laravel
 
 
+1 - Instalação
+2 - Configurando vhosts localmente
+3 - Criando Helpers files
+
+
 [[ INSTALANDO LARAVEL - http://laravel.com/docs/4.2/quick#installation ]]
+
+<strong>1 - Instalação</strong>
 
 - Instalação via composer (http://laravel.com/docs/4.2/installation#install-composer)
 
@@ -97,9 +104,11 @@ Caso queira voltar atras :
 <code>$ php artisan migrate:rollback</code> 
 
 o rollback chama a funcao down() automaticamente
+
+
 ===========================================================================
 
-CONFIGURACAO NO PROPRIO SERVIDOR SEM A NECESSIDADE DO ARTISAN
+<strong> 2- CONFIGURACAO NO PROPRIO SERVIDOR SEM A NECESSIDADE DO ARTISAN</strong>
 
 Caso queira configurar no proprio apache instalado, será necessário :
 
@@ -135,5 +144,28 @@ NameVirtualHost <url>.com.br:80
 
 A pasta Public é a área de acesso publico (obviamente) do laravel, portanto lá é a parte exposta.
 
+
+<strong>3 - Helper Files fonte </strong> (http://laravel-recipes.com/recipes/50/creating-a-helpers-file)
+
+Crie a pasta helpers ( nao é uma regra, apenas melhores praticas), dentro de APP e crie o arquivo dentro dela.
+Depois chame esse arquivo, no console.json e o programe no autoload
+
+<code>
+{
+    "autoload": {
+        "files": [
+            "app/helpers.php"
+        ]
+    }
+}
+</code>
+
+E em seguida, chame o composer para efetuar essa alteração
+
+<code> $ composer dump-auto </code>
+
+Você pode tambem chamar o arquivo helper direto, sem a necessidade de deixa-lo no autoload, dessa forma :
+
+<code>require app_path().'/helpers/arquivo.php';</code>
 
 
