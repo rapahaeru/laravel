@@ -4,8 +4,9 @@ class AuthController extends BaseController {
 
     public function login(){
         //$form = new LoginForm;
-
-        return View::make('admin.login');
+        $data['user']           = verifySession('user','/admin/login'); //admin_helper
+        $data['url_current']    = Request::path();
+        return View::make('admin.login',$data);
 
     }
 

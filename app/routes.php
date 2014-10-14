@@ -41,6 +41,13 @@ Route::get('/logout', 'AuthController@logout');
 Route::group(["prefix" => "admin"], function(){
     Route::get("/", "AdminController@index");
     Route::get("/painel", "PainelController@index");
+    Route::get("/usuarios", "UserController@showUsers");
+    Route::get("/usuario/novo", "UserController@newUser");
+
+ //Route::post("/usuario/novo",array('before' => 'csrf', function() {
+	Route::post("/usuario/novo", "UserController@insert");
+ //}));    
+    
     //Route::get("/dashboard", "AdminController@index");
     //AdminRoute::named("agendas", "AgendasAdminController");
     //AdminRoute::named("destaques", "DestaquesAdminController");

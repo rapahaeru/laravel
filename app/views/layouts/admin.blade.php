@@ -4,7 +4,9 @@
         <meta charset="utf-8"/>
         <title>Admin :: {{ Config::get('app.name') }}</title>
         <link href="{{asset('incs/css/bootstrap.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('incs/css/plugins/bootstrapValidator.min.css')}}" rel="stylesheet" />
         <link href="{{asset('incs/css/style.css')}}" rel="stylesheet" />
+
         <style type="text/css">body{margin-top:130px;}</style>
     </head>
     <body>
@@ -38,5 +40,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="{{asset('incs/js/jQuery-1.111.min.js')}}"></script>
         <script src="{{asset('incs/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('incs/js/functions.js')}}"></script>
+        @yield("script")
     </body>
 </html>

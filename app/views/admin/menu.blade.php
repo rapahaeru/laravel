@@ -12,7 +12,7 @@
         Configurações <span class="caret"></span>
       </a>
       <ul class="dropdown-menu" role="menu">
-          <li><a href="">usuários</a></li>
+          <li><a href="{{ url('/admin/usuarios') }}">usuários</a></li>
       </ul>
     </li>
 
