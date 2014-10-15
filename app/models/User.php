@@ -41,7 +41,38 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return false;
 		}
 
-	}	
+	}
+
+	static function saveUser ($arr_user_data){
+        
+		$array = array(	
+						'created_at'		=> date("Y-m-d H:i:s",time()), 
+						'updated_at'		=> date("Y-m-d H:i:s",time()), 
+						'usr_mail'			=> $arr_user_data['inputmail'], 
+						'usr_name' 			=> $arr_user_data['inputname'], 
+						'usr_pass' 			=> Hash::make($arr_user_data['inputpass']), 
+						'usr_status' 		=> $arr_user_data['submit-type'], 
+						'usr_level' 		=> 1);
+
+        $id = DB::table('users')
+        				->insertGetId($array);
+
+        if ($id > 0)
+        	return $id;
+        else
+        	return False;
+	}
+
+	static function removeUser ($user_id){
+		$remove =  DB::table('users')
+		->where('usr_id',$user_id)
+		->delete();
+
+		if ($remove > 0)
+			return true;
+		else
+			return false;
+	}
 
 
 }

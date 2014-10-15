@@ -29,12 +29,35 @@ class UserController extends BaseController {
 
     public function insert(){
 
-        var_dump($_POST);
+        $data['user']           = verifySession('user','/admin/login'); //admin_helper
+        $data['url_current']    = Request::path();        
 
-        //$data['user']           = verifySession('user','/admin/login'); //admin_helper
-        //$data['url_current']    = Request::path();
+        if($_POST)
+            $returnInsertUser       = User::saveUser($_POST);
+        else
+            $message = showAlerts('error',Config::get('messages.user.error.cadastro') ); //config/messages
 
-        //return View::make('admin.user',$data);   
+
+        if ($returnInsertUser)
+            $message = showAlerts('success',Config::get('messages.user.success.cadastro') ); //config/messages 
+                                        
+     
+        // Busca lista de usuários cadastrados
+        $users = User::getAll();
+        if ($users)
+            $data['userslist'] = $users;        
+
+        return Redirect::to(url('/admin/usuarios'))->with('message', $message );
+    }
+
+    public function remove ($id) {
+
+        $returnId = User::removeUser($id);
+        if ($returnId)
+             return Redirect::back()->with('message', showAlerts('success',Config::get('messages.user.success.remove')) );
+         else
+             return Redirect::back()->with('message', showAlerts('success',Config::get('messages.user.error.remove')) );
+            
     }
 
 }
