@@ -1,11 +1,10 @@
 
 function buttonRedirect(elem){
 
-		var url = $(elem).attr('url');
-
-      $(document).on('click', elem,function (){
-        window.location.href = url;
-      });	
+	var url = $(elem).attr('url');
+	$(document).on('click', elem,function (){
+		window.location.href = $(this).attr('url');
+	});
 
 }
 
