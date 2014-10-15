@@ -43,10 +43,11 @@ Route::group(["prefix" => "admin"], function(){
     Route::get("/painel", "PainelController@index");
     Route::get("/usuarios", "UserController@showUsers");
     Route::get("/usuario/novo", "UserController@newUser");
+    Route::get("/usuario/remove/{id}", "UserController@remove")->where('id', '[0-9]+');
 
- //Route::post("/usuario/novo",array('before' => 'csrf', function() {
-	Route::post("/usuario/novo", "UserController@insert");
- //}));    
+	 Route::group(['before' => 'csrf'], function() {
+		Route::post("/usuario/novo", "UserController@insert");
+	 });    
     
     //Route::get("/dashboard", "AdminController@index");
     //AdminRoute::named("agendas", "AgendasAdminController");
