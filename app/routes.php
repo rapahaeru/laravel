@@ -39,7 +39,7 @@ Route::get('/logout', 'AuthController@logout');
 
 
 Route::group(["prefix" => "admin"], function(){
-    Route::get("/", "AdminController@index");
+    Route::get("/", "PainelController@index");
     Route::get("/painel", "PainelController@index");
     Route::get("/usuarios", "UserController@showUsers");
     Route::get("/usuario/novo", "UserController@newUser");
