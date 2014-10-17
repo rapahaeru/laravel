@@ -33,21 +33,31 @@ App::after(function($request, $response)
 |
 */
 
+// Route::filter('auth', function()
+// {
+// 	if (Auth::guest())
+// 	{
+// 		if (Request::ajax())
+// 		{
+// 			return Response::make('Unauthorized', 401);
+// 		}
+// 		else
+// 		{
+// 			return Redirect::guest('login');
+// 		}
+// 	}
+// });
+
 Route::filter('auth', function()
 {
-	if (Auth::guest())
-	{
-		if (Request::ajax())
-		{
-			return Response::make('Unauthorized', 401);
-		}
-		else
-		{
-			return Redirect::guest('login');
-		}
-	}
-});
+	//if (Auth::guest()) return Redirect::to('login');
 
+         $SessionUser           = verifySession('user'); //admin_helper
+         //var_dump($SessionUser);
+         if (!$SessionUser)
+             return Redirect::to(url('login'));
+
+});
 
 Route::filter('auth.basic', function()
 {
