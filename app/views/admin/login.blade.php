@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+
+{{ Session::get('message') }}
+
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<div class="jumbotron">

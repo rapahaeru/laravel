@@ -1,4 +1,5 @@
-    <!-- {{ $url_current }} -->
+    <!-- @if (isset($url_current) ) -->
+    <!-- @endif -->
   <ul class="nav nav-tabs" role="tablist">
     <li>
       <ul class="nav nav-pills">

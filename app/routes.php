@@ -34,27 +34,36 @@ Route::get('/', function()
 Route::get('/login', 'AuthController@login'); 
 Route::post('/login', 'AuthController@do_login'); // vindo do formulario de login
 
-Route::get('/logout', 'AuthController@logout');
 
+Route::group(array('before' => 'auth'), function()
+{  
 
+    Route::group(["prefix" => "admin"], function(){
 
-Route::group(["prefix" => "admin"], function(){
-    Route::get("/", "PainelController@index");
-    Route::get("/painel", "PainelController@index");
-    Route::get("/usuarios", "UserController@showUsers");
-    Route::get("/usuario/novo", "UserController@newUser");
-    Route::get("/usuario/remove/{id}", "UserController@remove")->where('id', '[0-9]+');
+      
+            Route::get("/", "PainelController@index");
+            Route::get('/logout', 'AuthController@logout');
+            Route::get("/painel", "PainelController@index");
+            Route::get("/usuarios", "UserController@showUsers");
+            Route::get("/usuario/novo", "UserController@newUser");
+            Route::get("/usuario/remove/{id}", "UserController@remove")->where('id', '[0-9]+');
+            Route::get("/usuario/edit/{id}", "UserController@editUser")->where('id', '[0-9]+');
+            Route::post("/usuario/atualiza/{id}", "UserController@update")->where('id', '[0-9]+');
+            Route::post("/usuario/verifica-email", "UserController@emailExist");
+            
 
-	 Route::group(['before' => 'csrf'], function() {
-		Route::post("/usuario/novo", "UserController@insert");
-	 });    
-    
-    //Route::get("/dashboard", "AdminController@index");
-    //AdminRoute::named("agendas", "AgendasAdminController");
-    //AdminRoute::named("destaques", "DestaquesAdminController");
-    
+        	 Route::group(['before' => 'csrf'], function() {
+        		Route::post("/usuario/novo", "UserController@insert");
+        	 });    
+            
+            //Route::get("/dashboard", "AdminController@index");
+            //AdminRoute::named("agendas", "AgendasAdminController");
+            //AdminRoute::named("destaques", "DestaquesAdminController");
+        
+        
+    });
+
 });
-
 
 //Route::get('users', 'UserController@showProfile');
 //Route::get('users', function(){

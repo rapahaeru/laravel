@@ -6,12 +6,24 @@ class UserController extends BaseController {
     /**
      * Show the profile for the given user.
      */
+
+    public function emailExist (){
+
+        if (isset($_POST['mail'])){
+
+            $returnMail = User::getUserByMail($_POST['mail']);
+            if ($returnMail)
+                return "true";
+            else
+                return "false";
+        }
+    }
+
     public function showUsers()
     {
 
-        $data['user']           = verifySession('user','/admin/login'); //admin_helper
         $data['url_current']    = Request::path();
-
+        //var_dump($data['user']);
         $users = User::getAll();
         if ($users)
             $data['userslist'] = $users;
@@ -21,16 +33,12 @@ class UserController extends BaseController {
 
     public function newUser(){
 
-        $data['user']           = verifySession('user','/admin/login'); //admin_helper
         $data['url_current']    = Request::path();
 
         return View::make('admin.user',$data);   
     }
 
     public function insert(){
-
-        $data['user']           = verifySession('user','/admin/login'); //admin_helper
-        $data['url_current']    = Request::path();        
 
         if($_POST)
             $returnInsertUser       = User::saveUser($_POST);
@@ -58,6 +66,44 @@ class UserController extends BaseController {
          else
              return Redirect::back()->with('message', showAlerts('success',Config::get('messages.user.error.remove')) );
             
+    }
+
+    public function editUser ($id) {
+
+        if ( isset($id) && $id > 0 ){
+
+            $data['url_current']    = Request::path();
+
+            $userData = User::getUserById($id);
+            if ($userData)
+                $data['userData'] = $userData;
+            else
+                return Redirect::to(url('admin/usuarios'))->with('message', showAlerts('error',Config::get('messages.user.error.notfound')));
+
+            return View::make('admin.user',$data);
+
+        }else{
+
+            return Redirect::to(url('admin/usuarios'))->with('message', showAlerts('error',Config::get('messages.user.error.not-identified')));
+        }
+
+
+    }
+
+    public function update ($id){
+
+        if (isset($id) ) {
+            var_dump($_POST);
+            $returnUser = User::updateUser($id,$_POST);
+            if ($returnUser)
+                return Redirect::to(url('admin/usuarios'))->with('message', showAlerts('success',Config::get('messages.user.success.form-update')));
+            else 
+                return Redirect::to(url('admin/usuarios'))->with('message', showAlerts('error',Config::get('messages.user.error.form-update')));    
+        }else{
+            return Redirect::to(url('admin/usuarios'))->with('message', showAlerts('error',Config::get('messages.user.error.form-update')));
+        }
+
+
     }
 
 }

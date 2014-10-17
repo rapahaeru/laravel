@@ -32,7 +32,7 @@
             <button type="button" url="/admin/usuario/edit/{{ $key->usr_id }}" class="btn btn-info btn-sm button-edit">
               <span class="glyphicon glyphicon-edit"></span> 
             </button>
-            <button type="button" url="/admin/usuario/remove/{{ $key->usr_id }}" class="btn btn-danger btn-sm button-remove">
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmModal">
               <span class="glyphicon glyphicon-remove"></span> 
             </button> 
           </td>
@@ -40,6 +40,26 @@
        @endforeach 
     @endif
   </table>
+
+<!-- Modal de confirmação -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Você tem certeza ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+        <button type="button" url="/admin/usuario/remove/{{ $key->usr_id }}" class="btn btn-primary button-remove" data-dismiss="modal">Sim, tenho certeza</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 @stop
 @section('script')

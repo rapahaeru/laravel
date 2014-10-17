@@ -1,15 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
+@if ( isset($userData) )
+  {{ Form::open( array('method' => 'post', 'name' => 'form-user' , 'url' => 'admin/usuario/atualiza/' . $userData['0']->usr_id) ) }}
+@else
+  {{ Form::open( array('method' => 'post', 'name' => 'form-user' , 'url' => 'admin/usuario/novo') ) }}
+@endif
 
-{{ Form::open( array('method' => 'post', 'name' => 'form-user' , 'url' => 'admin/usuario/novo') ) }}
   <div class="form-group">
     <label for="inputmail">E-mail</label>
-    <input type="email" class="form-control" id="inputmail" name="inputmail" placeholder="Digite seu e-mail">
+    <input type="email" class="form-control" id="inputmail" name="inputmail" placeholder="Digite seu e-mail" value="{{{ isset($userData['0']->usr_mail) && $userData['0']->usr_mail != "" ? $userData['0']->usr_mail : ""  }}}">
   </div>
   <div class="form-group">
     <label for="inputname">Nome</label>
-    <input type="text" class="form-control" id="inputname" name="inputname" placeholder="Digite seu nome completo">
+    <input type="text" class="form-control" id="inputname" name="inputname" placeholder="Digite seu nome completo" value="{{{ isset($userData['0']->usr_name) && $userData['0']->usr_name != "" ? $userData['0']->usr_name : ""  }}}">
   </div>  
   <div class="form-group">
     <label for="inputpass">Senha</label>
@@ -79,6 +83,26 @@
               } //fim fields
           });
       });
+
+    $(document).on('blur','#inputmail', function (){
+        //alert('ok');
+        $mail = $(this).val();
+        $.ajax({
+          type        : 'POST',
+          data        : {mail : $mail},
+          url         : '/admin/usuario/verifica-email',
+          beforeSend  : function(){
+
+          },
+          success     : function (data){
+            //console.log(data);
+            if (data == "true")
+              console.log("existente");
+            else
+              console.log("liberado");
+          }
+        }); 
+    });
 
 
   });

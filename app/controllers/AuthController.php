@@ -4,7 +4,7 @@ class AuthController extends BaseController {
 
     public function login(){
         //$form = new LoginForm;
-        $data['user']           = verifySession('user','/admin/login'); //admin_helper
+        //$data['user']           = verifySession('user','/login'); //admin_helper
         $data['url_current']    = Request::path();
         return View::make('admin.login',$data);
 
@@ -33,23 +33,22 @@ class AuthController extends BaseController {
                 return Redirect::to(url('/admin'));
                 //$retorno = 'senha validada';
             }else{
-                $retorno = "Senha ou usuário inválido";
+                return Redirect::back()->with("message",showAlerts('error',Config::get('messages.login.error.pass') ));
+                //
             }            
         }else{
 
-            $retorno = "E-mail não cadastrado";
+            return Redirect::back()->with("message",showAlerts('error',Config::get('messages.login.error.mail') ));
+            //
 
         }
 
-        echo $retorno;
-
-        
-        // return Redirect::back()->withErrors(["Usuário e/ou senha inválidos"]);
     }
 
     public function logout(){
         Session::flush();
-        return Redirect::to(url('/admin'));
+        //Auth::logout();
+        return Redirect::to(url('/login'));
     }
 
 }

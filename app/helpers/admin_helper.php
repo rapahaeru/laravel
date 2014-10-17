@@ -1,11 +1,13 @@
 <?php
 
-function verifySession ($par,$url){
+function verifySession ($par){
 
     if (Session::has($par)){
+    	//echo "tem";
         return Session::all();
     }else{
-    	return Redirect::to(url($url));
+    	return false;
+
     }
 
 }
@@ -19,3 +21,5 @@ function showAlerts($type,$message){
 	}
 	return $return;
 }
+
+

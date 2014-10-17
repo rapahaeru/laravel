@@ -24,7 +24,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	//protected $hidden = array('password', 'remember_token');
 
-
 	static function getAll(){
 		return DB::table('users')->get();
 	}
@@ -42,6 +41,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 
 	}
+
+	static function getUserById($user_id){
+		$query = DB::table('users')
+						->select('usr_name','usr_pass','usr_status','usr_level','usr_id','usr_mail')
+						->where('usr_id',$user_id)
+						->get();
+		
+		if (sizeof($query) > 0 ){
+			return $query;
+		}else{
+			return false;
+		}
+
+	}	
 
 	static function saveUser ($arr_user_data){
         
@@ -74,5 +87,35 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return false;
 	}
 
+	static function updateUser ($user_id,$array) {
+
+		if ( isset($array['usr_pass']) && $array['usr_pass'] != "" ) {
+			$array = array(	
+							'updated_at'		=> date("Y-m-d H:i:s",time()), 
+							'usr_mail'			=> $array['inputmail'], 
+							'usr_name' 			=> $array['inputname'], 
+							'usr_pass' 			=> Hash::make($array['inputpass']), 
+							'usr_status' 		=> $array['submit-type'], 
+							'usr_level' 		=> 1);
+
+		}else{
+			$array = array(	
+							'updated_at'		=> date("Y-m-d H:i:s",time()), 
+							'usr_mail'			=> $array['inputmail'], 
+							'usr_name' 			=> $array['inputname'], 
+							'usr_status' 		=> $array['submit-type'], 
+							'usr_level' 		=> 1);
+		} 
+
+        $id = DB::table('users')
+        				->where('usr_id', $user_id)
+        				->update($array);
+
+        if ($id > 0)
+        	return $id;
+        else
+        	return False;
+
+	}
 
 }
