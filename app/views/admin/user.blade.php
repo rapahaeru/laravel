@@ -55,6 +55,11 @@
 
                   inputmail: {
                       validators: {
+                          remote : {
+                            url: '/admin/usuario/verifica-email',
+                            type : 'POST',
+                            message: 'E-mail existente.'
+                          },
                           notEmpty: {
                               message: 'Por favor preencha este campo'
                           },
@@ -83,26 +88,6 @@
               } //fim fields
           });
       });
-
-    $(document).on('blur','#inputmail', function (){
-        //alert('ok');
-        $mail = $(this).val();
-        $.ajax({
-          type        : 'POST',
-          data        : {mail : $mail},
-          url         : '/admin/usuario/verifica-email',
-          beforeSend  : function(){
-
-          },
-          success     : function (data){
-            //console.log(data);
-            if (data == "true")
-              console.log("existente");
-            else
-              console.log("liberado");
-          }
-        }); 
-    });
 
 
   });
