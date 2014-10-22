@@ -15,6 +15,7 @@ Blade => http://magazine.softerize.com.br/tutoriais/php/laravel/templates-com-bl
 1 - Instalação
 2 - Configurando vhosts localmente
 3 - Criando Helpers files
+4 - Criando database seeders (http://magazine.softerize.com.br/tutoriais/php/laravel/usuarios-e-controle-de-acesso-laravel)
 
 
 [[ INSTALANDO LARAVEL - http://laravel.com/docs/4.2/quick#installation ]]
@@ -168,4 +169,53 @@ Você pode tambem chamar o arquivo helper direto, sem a necessidade de deixa-lo 
 
 <code>require app_path().'/helpers/arquivo.php';</code>
 
+===========================================================================
+
+<h3>4 - Database Seeder</h3>
+
+<p>Precisamos que pelo menos um usuário seja criado automaticamente, porque depois que finalizamos o controle de acesso precisamos fazer login para alterar os usuários. Ou seja, se você instalar esse código em um novo computador, não conseguirá criar nenhum usuário. Isso é chamado de database seeding, algo como semear o banco de dados. Abra o arquivo app/database/seeds/DatabaseSeeder.php.</p>
+
+
+<code>
+
+class DatabaseSeeder extends Seeder {
+
+     /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Eloquent::unguard();
+
+        $this->call('TabelaUsuarioSeeder');
+    }
+
+}
+
+class TabelaUsuarioSeeder extends Seeder {
+
+    public function run()
+    {
+        $usuarios = Usuario::get();
+
+        if($usuarios->count() == 0) {
+            Usuario::create(array(
+                'email' => 'seu@email.com',
+                'senha' => Hash::make('admin'),
+                'nome'  => 'Seu Nome',
+                'tipo'  => 'admin'
+            ));
+        }
+    }
+
+}
+</code>
+
+Para executar esse seed, execute o comando:
+
+<code>$ php artisan db:seed</code>
+
+<p>Agora que temos um usuário na nossa base de dados, vamos criar uma tela de login e fazer o controle de acesso.</p>
 
