@@ -8,13 +8,11 @@ class UserController extends BaseController {
      */
 
     public function emailExist (){
-        //var_dump($_POST);
 
         if (isset($_POST['inputmail'])){
 
             $returnMail = User::getUserByMail($_POST['inputmail']);
             if ($returnMail)
-                //return $_POST['inputmail'];
                 $isAvailable = false;
             else
                 $isAvailable = true;
@@ -27,7 +25,7 @@ class UserController extends BaseController {
     {
 
         $data['url_current']    = Request::path();
-        //var_dump($data['user']);
+
         $users = User::getAll();
         if ($users)
             $data['userslist'] = $users;
