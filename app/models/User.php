@@ -42,6 +42,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	}
 
+/*
+	Função utilizada no update de usuário.
+	Ao ter a opção de atualizar o usuário, o seu email ( que não é permitido duplicação) tem de ser
+	verificado como na inserção, só que podendo manter o atual email.
+	A função verifica uma lista de emails, caso o novo email não conste no banco de dados, retorna-se TRUE
+*/
+	static function isMailFree($mail){
+		$query = DB::table('users')
+						->select('usr_id')
+						->where('usr_mail',$mail)
+						->get();
+		
+		if (sizeof($query) > 0 ){
+			return false;
+		}else{
+			return true;
+		}
+
+	}	
+
+
 	static function getUserById($user_id){
 		$query = DB::table('users')
 						->select('usr_name','usr_pass','usr_status','usr_level','usr_id','usr_mail')

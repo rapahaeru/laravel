@@ -9,13 +9,30 @@ class UserController extends BaseController {
 
     public function emailExist (){
 
-        if (isset($_POST['inputmail'])){
+        //var_dump($_POST);
+
+        if ($_POST['template'] == "edit"){
+           
+
+            $returnCurrentMail = User::isMailFree($_POST['inputmail']);
+            if (!$returnCurrentMail){
+                    //$verifyMail =  User::getUserByMail($_POST['currentmail']);
+                    if ($_POST['inputmail'] == $_POST['currentmail'])
+                        $isAvailable = true;
+                    else
+                        $isAvailable = false;
+            }else{
+                $isAvailable = true;
+            }    
+
+        }else{
 
             $returnMail = User::getUserByMail($_POST['inputmail']);
             if ($returnMail)
                 $isAvailable = false;
             else
                 $isAvailable = true;
+
         }
 
         echo json_encode(array('valid' => $isAvailable));

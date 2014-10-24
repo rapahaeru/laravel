@@ -24,6 +24,13 @@
     <input type="password" class="form-control" id="inputconfirmpass" name="inputconfirmpass" placeholder="Confirme senha">
   </div>  
   <input type="hidden" name="submit-type" id="submit-type" value="">
+  <? if (strpos($url_current,'edit')) : ?>
+    <input type="hidden" id="template-form" name="template" value="edit">
+    <input type="hidden" id="current-mail" name="current-mail" value="{{{ isset($userData['0']->usr_mail) && $userData['0']->usr_mail != "" ? $userData['0']->usr_mail : ""  }}}">
+  <? else : ?> 
+    <input type="hidden" id="template-form" name="template" value="insert">
+    <input type="hidden" id="current-mail" name="current-mail" value="">
+  <? endif;?>
   <button type="submit" id="save" class="btn btn-success">Salvar</button>
   <button type="submit" id="save-inactive" class="btn btn-danger">Salvar inativo</button>
   {{ Form::close() }}
@@ -31,11 +38,8 @@
 @stop
 @section('script')
 <script src="{{asset('incs/js/plugins/bootstrapValidator.min.js')}}"></script>
-<? if (strpos($url_current,'edit')) : ?>
-  <script src="{{asset('incs/js/user/functions_update.js')}}"></script>
-<? else : ?> 
-  <script src="{{asset('incs/js/user/functions_insert.js')}}"></script>
-<? endif;?>
+<script src="{{asset('incs/js/user/functions.js')}}"></script>
+<? //endif;?>
 <script>
   $(document).ready(function (){
       submitType();
