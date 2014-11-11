@@ -5,6 +5,10 @@
 
 {{ Session::get('message') }}
 
+<ol class="breadcrumb">
+  <li><a href="{{ url('admin/') }}">Home</a></li>
+  <li class="active">Lista de usuários</li>
+</ol>
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
@@ -40,6 +44,18 @@
        @endforeach 
     @endif
   </table>
+
+  <nav>
+    <ul class="pagination">
+      <li><a href="#">&laquo;</a></li>
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&raquo;</a></li>
+    </ul>
+  </nav>
 
 <!-- Modal de confirmação -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

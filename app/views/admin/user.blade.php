@@ -1,6 +1,14 @@
 @extends('layouts.admin')
 
+
 @section('content')
+
+<ol class="breadcrumb">
+  <li><a href="{{ url('admin/') }}">Home</a></li>
+  <li><a href="{{ url('admin/usuarios') }}">Lista de usuários</a></li>
+  <li class="active">Usuário</li>
+</ol>
+
 @if ( isset($userData) )
   {{ Form::open( array('method' => 'post', 'name' => 'form-user' , 'url' => 'admin/usuario/atualiza/' . $userData['0']->usr_id) ) }}
 @else
