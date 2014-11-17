@@ -25,7 +25,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	//protected $hidden = array('password', 'remember_token');
 
 	static function getAll(){
-		return DB::table('users')->get();
+		return DB::table('users')->paginate(2);
+
 	}
 
 	static function getUserByMail($mail){

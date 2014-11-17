@@ -46,7 +46,7 @@ class UserController extends BaseController {
         $users = User::getAll();
         if ($users)
             $data['userslist'] = $users;
-        
+
 		return View::make('admin.userlist',$data);
     }
 
