@@ -22,7 +22,6 @@
                       <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand active" href="{{url('admin')}}">{{ Config::get('app.name') }}</a>
-                    <a href="/admin/logout">Logout</a>
                 </div>
                 
                 <div class="collapse navbar-collapse navbar-ex1-collapse menu-style">
