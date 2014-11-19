@@ -51,6 +51,8 @@ Route::group(array('before' => 'auth'), function()
             Route::post("/usuario/atualiza/{id}", "UserController@update")->where('id', '[0-9]+');
             Route::post("/usuario/verifica-email", "UserController@emailExist");
             
+            Route::get('/midias', 'MediaController@show');
+            Route::post('/midias/upload', 'MediaController@upload');
 
         	 Route::group(['before' => 'csrf'], function() {
         		Route::post("/usuario/novo", "UserController@insert");
